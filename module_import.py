@@ -1,7 +1,8 @@
 import importlib.util
 import glob
 
-
+#loads modules form path
+#input path
 def loadmodules(path):
     modules = glob.glob(path + "*.py")
     module_array = []

@@ -7,20 +7,21 @@ import api
 
 import module_import
 
-
+#init variables to handle messaging and input of the API key
 slack_api_key = sys.argv[1]
 slack = Slacker(slack_api_key)
 weburl = slack.rtm.start().body['url']
 
-
+#creates websocket
 socket = websocket.create_connection(weburl, sslopt={"cert_reqs": ssl.CERT_NONE})
 
+#creates module array from python files in the modules directory
 module_array, module_names = module_import.loadmodules('modules/')
 
 for i in range(len(module_array)):  # temporary code. In the future, we should read this from a config file.
     module_array[i] = [module_array[i], True]
 
-
+#Main loop
 while True:
     update = socket.recv()
     update = json.JSONDecoder().decode(update)
