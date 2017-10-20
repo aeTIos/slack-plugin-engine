@@ -1,3 +1,5 @@
+# example of module code
+# reacts to the the command !example and sends message to the channel that supplied it
 import sloth
 
 
