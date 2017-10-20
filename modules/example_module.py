@@ -1,7 +1,8 @@
-import api
+import sloth
 
 
+@sloth.texthandler
 def main(update):
-    if api.text(update).startswith('!example'):
-        return api.sendmessage(update.get('channel'), 'Example response')
+    if update.get('text').startswith('!example'):
+        return sloth.sendmessage(update.get('channel'), 'Example response')
 
