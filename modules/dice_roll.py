@@ -16,6 +16,6 @@ def main(update):
                 rolled = random.randint(1, sides)
                 return sloth.sendmessage(update.get('channel'), str(rolled))
             else:
-                return sloth.sendmessage(update.get('channel'), 'That is impossible in this reality')
+                return sloth.sendmessage(update.get('channel'), 'That is impossible in this reality.')
         else:
             return sloth.sendmessage(update.get('channel'), 'Please input a number.')
