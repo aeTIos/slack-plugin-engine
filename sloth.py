@@ -1,11 +1,12 @@
 import json
 
 
-def text(update):
-    try:
-        return update['text']
-    except KeyError:
-        return 'No text in update body!'
+def texthandler(handlerfunction):
+    def wrapper(update):
+        if 'text' in update:
+            return handlerfunction(update)
+
+    return wrapper
 
 
 def sendmessage(channel, text):
