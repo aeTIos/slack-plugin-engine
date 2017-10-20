@@ -10,6 +10,9 @@ def main(update):
     if update.get('text').startswith('!roll'):
         string = update.get('text')
         split = string.split()
-        sides = int(split[1])
-        rolled = [random.randint(1, sides)]
-        return sloth.sendmessage(update.get('channel'), rolled)
+        if split[1].isdigit():
+            sides = int(split[1])
+            rolled = random.randint(1, sides)
+            return sloth.sendmessage(update.get('channel'), str(rolled))
+        else:
+            return sloth.sendmessage(update.get('channel'), 'Please input a number.')
