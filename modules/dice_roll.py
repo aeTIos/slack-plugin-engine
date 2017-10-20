@@ -12,7 +12,10 @@ def main(update):
         split = string.split()
         if split[1].isdigit():
             sides = int(split[1])
-            if sides >= 2:
+            if sides == len(0):
+                rolled = random.randint(1, 6)
+                return sloth.sendmessage(update.get('channel'), str(rolled))
+            elif sides >= 2:
                 rolled = random.randint(1, sides)
                 return sloth.sendmessage(update.get('channel'), str(rolled))
             else:
