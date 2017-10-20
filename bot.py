@@ -3,7 +3,7 @@ from slacker import Slacker
 import websocket
 import ssl
 import json
-import api
+import sloth
 
 import module_import
 
@@ -39,6 +39,6 @@ while True:
             except Exception as e:
                 # print('Error:', e)
                 # return error and log
-                socket.send(api.sendmessage(update.get('channel'),
+                socket.send(sloth.sendmessage(update.get('channel'),
                                             f"We caught an error and the module has been disabled.\nError: {e}"))
                 i[1] = False  # set module to OFF so we don't get further errors
