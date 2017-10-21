@@ -1,16 +1,12 @@
-import sys
-from slacker import Slacker
 import websocket
 import ssl
 import json
 import sloth
-
+import globals
 import module_import
 
-# init variables to handle messaging and input of the API key
-slack_api_key = sys.argv[1]
-slack = Slacker(slack_api_key)
-weburl = slack.rtm.start().body['url']
+# init weburl from global slack variable
+weburl = globals.slack.rtm.start().body['url']
 
 # creates websocket connection
 socket = websocket.create_connection(weburl, sslopt={"cert_reqs": ssl.CERT_NONE})
