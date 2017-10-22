@@ -1,4 +1,6 @@
 import json
+import globals
+import sys
 
 
 def texthandler(handlerfunction):
@@ -18,12 +20,15 @@ def sendmessage(channel, text):
 
 
 # sends private message
-# input user name and text to send
-# return Json encoded payload
-# TODO: test function to see if it works
+# input real_name(nickname) and text to send
+# return None
 def sendprivmessage(user,text):
-    payload = json.JSONEncoder().encode({"id": 1, " type": "message", "channel": user, "text": text})
-    return payload
+    response = globals.slack.users.list()
+    users = response.body["members"]
+    for member in users:
+        if member["profile"]["real_name"] == user:
+            globals.slack.chat.post_message("@" + member["id"], text)
+    return None
 
 
 # uploads image
