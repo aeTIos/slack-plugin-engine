@@ -1,6 +1,6 @@
 import json
 import globals
-import sys
+import string
 
 
 def texthandler(handlerfunction):
@@ -22,18 +22,19 @@ def sendmessage(channel, text):
 # sends private message
 # input real_name(nickname) and text to send
 # return None
-def sendprivmessage(user,text):
+def sendprivmessage(userarray,text):
     response = globals.slack.users.list()
     users = response.body["members"]
-    for member in users:
-        if member["profile"]["real_name"] == user:
-            globals.slack.chat.post_message("@" + member["id"], text)
+    for user in userarray:
+        for member in users:
+            if member["profile"]["real_name"].lower() == user.lower() or member["profile"]["display_name"].lower() == user.lower():
+                globals.slack.chat.post_message("@" + member["id"], text)
     return None
 
 
 # uploads image
 # TODO: STUB
-def uploadimage():
+def uploadfile():
     pass
 
 
