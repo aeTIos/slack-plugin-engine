@@ -1,7 +1,7 @@
 import websocket
 import ssl
 import json
-import sloth
+import patrick
 import globals
 import module_import
 
@@ -38,7 +38,7 @@ while True:
             except Exception as e:
                 # print('Error:', e)
                 # return error and log
-                socket.send(sloth.sendmessage(update.get('channel'),
+                socket.send(patrick.sendmessage(update.get('channel'),
                             f"We caught an error and the module has been disabled.\nError: {e}"))
                 # set module to OFF so we don't get further errors
                 i[1] = False
